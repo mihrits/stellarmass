@@ -77,6 +77,18 @@ m = fit(MixedModel, @formula(logMstar_gal ~ 1 + logLtot_grp + logMstar_grp + Nto
 # ╔═╡ 997762c8-94fe-4f68-bd50-bda42c3e6b1e
 VarCorr(m)
 
+# ╔═╡ ee29a232-dd89-4033-8969-cad43c484af2
+maximum(galfull.Ntot_grp)
+
+# ╔═╡ 10b102bc-83d2-4c4e-a8d5-e6281e070217
+describe(galfull)
+
+# ╔═╡ 6473195d-7929-49b0-b816-ac35877d167e
+m_base = fit(MixedModel, @formula(logMstar_gal ~ (1|grpIDcat)), galfull)
+
+# ╔═╡ 0e5ac169-eba8-4cfd-abd0-a70f02a92d5d
+VarCorr(m_base)
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -1422,5 +1434,9 @@ version = "0.9.1+5"
 # ╠═806fea85-07a2-4dd1-ba8a-f03e5e3001c1
 # ╠═195153dd-6225-447f-82ed-89c6584f85c5
 # ╠═997762c8-94fe-4f68-bd50-bda42c3e6b1e
+# ╠═ee29a232-dd89-4033-8969-cad43c484af2
+# ╠═10b102bc-83d2-4c4e-a8d5-e6281e070217
+# ╠═6473195d-7929-49b0-b816-ac35877d167e
+# ╠═0e5ac169-eba8-4cfd-abd0-a70f02a92d5d
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
