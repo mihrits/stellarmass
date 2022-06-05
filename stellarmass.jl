@@ -11,6 +11,7 @@ begin
 	using MixedModels
 	using StatsPlots
 	using CategoricalArrays
+	using GLM
 end
 
 # ╔═╡ d17ef9b4-d817-11ec-1acc-f136c8d221a0
@@ -77,6 +78,9 @@ m = fit(MixedModel, @formula(logMstar_gal ~ 1 + logLtot_grp + logMstar_grp + Nto
 # ╔═╡ 997762c8-94fe-4f68-bd50-bda42c3e6b1e
 VarCorr(m)
 
+# ╔═╡ 3a61235b-78f6-40b4-af2d-99bcba8f1f18
+aic(m)
+
 # ╔═╡ ee29a232-dd89-4033-8969-cad43c484af2
 maximum(galfull.Ntot_grp)
 
@@ -89,12 +93,31 @@ m_base = fit(MixedModel, @formula(logMstar_gal ~ (1|grpIDcat)), galfull)
 # ╔═╡ 0e5ac169-eba8-4cfd-abd0-a70f02a92d5d
 VarCorr(m_base)
 
+# ╔═╡ ee1be5da-c011-4013-b679-1977746c5917
+aic(m_base)
+
+# ╔═╡ 6783b0ee-7d7b-469e-a421-98fda33471b3
+m_grp_mass = fit(MixedModel, @formula(logMstar_gal ~ 1 + logMstar_grp + (1|grpIDcat)), galfull)
+
+# ╔═╡ 61f8f04b-54a5-46b6-96e0-05ae8c9c6080
+VarCorr(m_grp_mass)
+
+# ╔═╡ dba66893-e3c0-4c7a-b2b5-94c97e8177e4
+aic(m_grp_mass)
+
+# ╔═╡ 90d414e3-42b8-407c-b3af-69e60cc3d574
+m_gal_lum = fit(LinearModel, @formula(logMstar_gal ~ k_tc), galfull)
+
+# ╔═╡ f8151e90-2256-4b72-92d9-7aeb67e19cfd
+aic(m_gal_lum)
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 CategoricalArrays = "324d7699-5711-5eae-9e2f-1d82baa6b597"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+GLM = "38e38edf-8417-5370-95a0-9cbb8c7f171a"
 MixedModels = "ff71e718-51f3-5ec2-a782-8ffcbfa3c316"
 StatsPlots = "f3b207a7-027a-5e70-b257-86293d7955fd"
 
@@ -102,6 +125,7 @@ StatsPlots = "f3b207a7-027a-5e70-b257-86293d7955fd"
 CSV = "~0.10.4"
 CategoricalArrays = "~0.10.5"
 DataFrames = "~1.3.4"
+GLM = "~1.8.0"
 MixedModels = "~4.6.4"
 StatsPlots = "~0.14.34"
 """
@@ -455,9 +479,9 @@ version = "3.3.6+0"
 
 [[deps.GLM]]
 deps = ["Distributions", "LinearAlgebra", "Printf", "Reexport", "SparseArrays", "SpecialFunctions", "Statistics", "StatsBase", "StatsFuns", "StatsModels"]
-git-tree-sha1 = "92b8d38886445d6d06e5f13201e57d018c4ff880"
+git-tree-sha1 = "039118892476c2bf045a43b88fcb75ed566000ff"
 uuid = "38e38edf-8417-5370-95a0-9cbb8c7f171a"
-version = "1.7.0"
+version = "1.8.0"
 
 [[deps.GR]]
 deps = ["Base64", "DelimitedFiles", "GR_jll", "HTTP", "JSON", "Libdl", "LinearAlgebra", "Pkg", "Printf", "Random", "RelocatableFolders", "Serialization", "Sockets", "Test", "UUIDs"]
@@ -1434,9 +1458,16 @@ version = "0.9.1+5"
 # ╠═806fea85-07a2-4dd1-ba8a-f03e5e3001c1
 # ╠═195153dd-6225-447f-82ed-89c6584f85c5
 # ╠═997762c8-94fe-4f68-bd50-bda42c3e6b1e
+# ╠═3a61235b-78f6-40b4-af2d-99bcba8f1f18
 # ╠═ee29a232-dd89-4033-8969-cad43c484af2
 # ╠═10b102bc-83d2-4c4e-a8d5-e6281e070217
 # ╠═6473195d-7929-49b0-b816-ac35877d167e
 # ╠═0e5ac169-eba8-4cfd-abd0-a70f02a92d5d
+# ╠═ee1be5da-c011-4013-b679-1977746c5917
+# ╠═6783b0ee-7d7b-469e-a421-98fda33471b3
+# ╠═61f8f04b-54a5-46b6-96e0-05ae8c9c6080
+# ╠═dba66893-e3c0-4c7a-b2b5-94c97e8177e4
+# ╠═90d414e3-42b8-407c-b3af-69e60cc3d574
+# ╠═f8151e90-2256-4b72-92d9-7aeb67e19cfd
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
