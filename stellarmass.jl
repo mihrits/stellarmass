@@ -41,6 +41,9 @@ groups = DataFrame(
 			:Rad, :angRad, :DL, :Ntot],
 	))
 
+# ╔═╡ f4e00519-298b-4ee6-aa42-ccc4f1c4f4b4
+count(row -> row >= 10, groups.Ntot)
+
 # ╔═╡ d3f668b1-6152-42f1-8f25-1443f6959ab5
 begin
 galaxies = DataFrame(
@@ -80,9 +83,6 @@ VarCorr(m)
 
 # ╔═╡ 3a61235b-78f6-40b4-af2d-99bcba8f1f18
 aic(m)
-
-# ╔═╡ ee29a232-dd89-4033-8969-cad43c484af2
-maximum(galfull.Ntot_grp)
 
 # ╔═╡ 10b102bc-83d2-4c4e-a8d5-e6281e070217
 describe(galfull)
@@ -1448,10 +1448,11 @@ version = "0.9.1+5"
 """
 
 # ╔═╡ Cell order:
-# ╠═d17ef9b4-d817-11ec-1acc-f136c8d221a0
+# ╟─d17ef9b4-d817-11ec-1acc-f136c8d221a0
 # ╠═59fd6d9f-7e23-49eb-a3ab-82d6d8fe0fa4
 # ╠═0fa18c6f-629b-436b-b1d4-03c818f5f8b0
 # ╠═46ebf6f8-1670-4ff1-9087-e3ada9bad3e3
+# ╠═f4e00519-298b-4ee6-aa42-ccc4f1c4f4b4
 # ╠═d3f668b1-6152-42f1-8f25-1443f6959ab5
 # ╠═237f3c87-89fd-4e19-9fce-b56c1519653b
 # ╠═9114160f-a0ee-4459-8fa6-4c3ac12242a4
@@ -1459,7 +1460,6 @@ version = "0.9.1+5"
 # ╠═195153dd-6225-447f-82ed-89c6584f85c5
 # ╠═997762c8-94fe-4f68-bd50-bda42c3e6b1e
 # ╠═3a61235b-78f6-40b4-af2d-99bcba8f1f18
-# ╠═ee29a232-dd89-4033-8969-cad43c484af2
 # ╠═10b102bc-83d2-4c4e-a8d5-e6281e070217
 # ╠═6473195d-7929-49b0-b816-ac35877d167e
 # ╠═0e5ac169-eba8-4cfd-abd0-a70f02a92d5d
